@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "9e16ef76-ab8c-4195-8bd7-1f747a63216b",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20833301"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// код ответа 200\r",
+							"if(responseCode.code === 200){\r",
+							"    tests[\"Код ответа 200\"]=true; //ответ не пустой\r",
+							"    if(responseBody !=='') {\r",
+							"        tests['Тело ответа не пустое']=true;\r",
+							"\r",
+							"        var testStr = 'Janet'; \r",
+							"       var responseBodyJSON = JSON.parse(responseBody);\r",
+							"       var strfromJSON = responseBodyJSON \r",
+							"        if(testStr === strfromJSON){\r",
+							"        tests[\"first_name = 'Janet'\"]=true;\r",
+							"        }\r",
+							"       else {\r",
+							"           tests[\"first_name не 'Janet'\"]=false;\r",
+							"        }\r",
+							"        }\r",
+							"       else{\r",
+							"           tests[\"Пустое тело ответа\"]=false;\r",
+							"       }\r",
+							"    }\r",
+							"    else{\r",
+							"        tests[\"Код ответа не 200, а\"+ responseCode.code.toString()]=false;\r",
+							"    }\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n\r\n\r\nfirst_name = \"Janet\"",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/single_user",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"single_user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
